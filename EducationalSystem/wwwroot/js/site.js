@@ -1,7 +1,7 @@
 ﻿demoApp = angular.module('demoApp', ['dx']).
     controller("mainController", function ($scope, $http) {
 
-        $scope.msg = "SignalR";
+        $scope.msg = "SignalR Go On";
         $scope.counter = 0;
         $scope.connection = new signalR.HubConnectionBuilder().withUrl("/firsthub").build();
         $scope.connection.start().then(function () {
