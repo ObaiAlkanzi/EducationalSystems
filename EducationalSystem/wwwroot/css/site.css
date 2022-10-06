@@ -1,0 +1,34 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+header .dx-toolbar{
+    background:white;
+    padding:2px;
+}
+
+header .dx-button{
+    border:0px;
+}
+header .dx-toolbar-label{
+    color:brown !important;
+    font-size:16px;
+    position:fixed;
+    right:35px;
+    background:transparent;
+}
