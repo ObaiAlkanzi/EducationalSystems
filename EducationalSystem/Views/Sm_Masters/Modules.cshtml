@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Modules";
+}
+
+<div class="demo-container" ng-controller="sm_moduleController">
+    <div dx-tree-list="mainForm.treeList"></div>
+    <div class="loadpanel" dx-load-panel="loadOptions"></div>
+
+</div>
+@section scripts{
+    <script src="~/js/sm_scripts/sm_modules.js"></script>
+}

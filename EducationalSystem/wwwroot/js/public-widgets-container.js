@@ -550,21 +550,21 @@ const setInsertDefaultParams = function (model) {
     model.IS_UPDATED = false;
     model.DELETED_BY = 0;
     model.UPDATED_BY = 0;
-    model.CREATED_BY = localStorage.getItem("UserId");
-    model.ORG_ID = localStorage.getItem("OrganizationId");
-    model.COMP_ID = localStorage.getItem("UnitId");
+    model.CREATED_BY = 1;
+    //model.ORG_ID = localStorage.getItem("OrganizationId");
+    //model.COMP_ID = localStorage.getItem("UnitId");
     return model;
 }
 const setUpdatetDefaultParams = function (model) {
     model.IS_DELETED = false;
     model.IS_UPDATED = true;
-    model.UPDATED_BY = localStorage.getItem("UserId");
+    model.UPDATED_BY = 1;
     return model;
 }
 const setDeleteDefaultParams = function (model) {
     model.IS_DELETED = true;
     model.IS_UPDATED = false;
-    model.DELETED_BY = localStorage.getItem("UserId");
+    model.DELETED_BY = 1;
     return model;
 }
 const gender = [{ id: 1, name: 'male' }, { id: 2, name: 'female' }];

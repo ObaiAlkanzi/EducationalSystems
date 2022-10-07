@@ -41,18 +41,6 @@ namespace EducationalSystem.Controllers.Api.Sm
             }
         }
 
-        [HttpPost,Route("/api/students")]
-        public ActionResult ActionHandler(SM_STUDENT model)
-        {
-            try
-            {
-                return StatusCode(StatusCodes.Status200OK,"Process complete successfully");
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,"Error retriving data from database");
-            }
-            
-        }
+        
     }
 }

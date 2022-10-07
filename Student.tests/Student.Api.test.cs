@@ -17,7 +17,7 @@ namespace Student.tests
 
             
             ActionResult actionResult;
-            SM_STUDENT testData = new SM_STUDENT();
+            //SM_MODULES testData = new SM_MODULES();
             //var result = ActionHandler(testData);
         }
     }
