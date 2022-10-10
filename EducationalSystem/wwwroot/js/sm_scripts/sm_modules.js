@@ -24,10 +24,10 @@ demoApp.controller("sm_moduleController", function ($scope, $http) {
             $scope.treeView.endCustomLoading();
             $scope.mainForm.data = res.data;
             $scope.treeView.option('dataSource', $scope.mainForm.data);
-        }/*, function (errorRes) {
+        }, function (errorRes) {
             $scope.treeView.endCustomLoading();
             serverErrorHandler(errorRes.status, 'GET DATA');
-        }*/);
+        });
     }
 
     $scope.mainForm.treeList = {
@@ -108,4 +108,11 @@ demoApp.controller("sm_moduleController", function ($scope, $http) {
         });
     }
 
+    $scope.connection = new signalR.HubConnectionBuilder().withUrl("/moduleshub").build();
+    $scope.connection.start().then(function () {}).catch((error) => {
+        showIndicator('connection error', 'error')
+    });
+    $scope.connection.on("newModuleCreated", function (module) {
+        showIndicator('New Module','success');
+    });
 });

@@ -39,5 +39,6 @@ app.MapControllerRoute(
 app.UseEndpoints(endpointes =>
 {
     endpointes.MapHub<FirstHub>("/firsthub");
+    endpointes.MapHub<ModulesHub>("/moduleshub");
 });
 app.Run();

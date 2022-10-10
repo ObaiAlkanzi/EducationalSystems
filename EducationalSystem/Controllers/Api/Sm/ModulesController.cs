@@ -1,6 +1,8 @@
-﻿using EducationalSystem.Repository;
+﻿using EducationalSystem.Hubs;
+using EducationalSystem.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentLibrary.SM_CLASSES;
@@ -15,11 +17,13 @@ namespace EducationalSystem.Controllers.Api.Sm
         public DataTable Dt { get; set; }
         public SqlConnection Conn;
         private readonly Sm_MasterInterface repository;
+        private readonly IHubContext<ModulesHub> moduleHub;
 
-        public ModulesController(IConfiguration configuration, Sm_MasterInterface repository)
+        public ModulesController(IConfiguration configuration, Sm_MasterInterface repository,IHubContext<ModulesHub> moduleHub)
         {
             Configuration = configuration;
             this.repository = repository;
+            this.moduleHub = moduleHub;
             Conn = new SqlConnection(configuration.GetConnectionString("StudentDbConnection"));
         }
         public IConfiguration Configuration { get; }
@@ -30,7 +34,7 @@ namespace EducationalSystem.Controllers.Api.Sm
 
             Dt = new DataTable();
             Conn.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM SM_MODULES", Conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM SM_MODULES WHERE IS_DELETED = 0", Conn);
             Conn.Close();
             adapter.Fill(Dt);
             return Dt;
@@ -38,8 +42,7 @@ namespace EducationalSystem.Controllers.Api.Sm
 
         [HttpPost, Route("/api/sm_master/modules/")]
         public async Task<ActionResult> ActionHandler(SM_MODULES model)
-        {
-            string msg = null;
+        {            
             try
             {
                 if(model.IS_UPDATED == true || model.IS_DELETED == true)
@@ -54,6 +57,8 @@ namespace EducationalSystem.Controllers.Api.Sm
                     var tmp = await repository.ADD_MODULE(model);
                     if (tmp != null)
                     {
+                        model.ID = model.ID;
+                        await moduleHub.Clients.All.SendAsync("newModuleCreated", model);
                         return StatusCode(StatusCodes.Status200OK, "Process complete successfully");
                     }
                 }
