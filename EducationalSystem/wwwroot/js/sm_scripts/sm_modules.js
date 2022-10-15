@@ -97,7 +97,6 @@ demoApp.controller("sm_moduleController", function ($scope, $http) {
             console.log(res)
             if (res.status === 200) {
                 showIndicator(res.data, 'success');
-                $scope.mainForm.getData();
             } else {
                 $scope.treeView.option('dataSource', $scope.mainForm.data);
                 showIndicator(res.data, 'error');
@@ -112,7 +111,5 @@ demoApp.controller("sm_moduleController", function ($scope, $http) {
     $scope.connection.start().then(function () {}).catch((error) => {
         showIndicator('connection error', 'error')
     });
-    $scope.connection.on("newModuleCreated", function (module) {
-        showIndicator('New Module','success');
-    });
+    
 });

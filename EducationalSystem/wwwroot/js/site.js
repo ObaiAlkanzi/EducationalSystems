@@ -3,34 +3,22 @@
 
         $scope.msg = "SignalR Go On";
         $scope.counter = 0;
-        //$scope.connection = new signalR.HubConnectionBuilder().withUrl("/firsthub").build();
-        //$scope.connection.start().then(function () {
-        //    $scope.connection.invoke("UserConnected",1).then(() => {
-
-        //    }).catch((error) => {
-
-        //    });
-        //}).catch((error) => {
-        //    showIndicator('connection error','error')
-        //});
-        //$scope.connection.on("ReseciveMessage", function (user, msg) {
-        //    $scope.counter = $scope.counter + 1;
-        //    $scope._headerInit.option('items[1].options.text', $scope.counter)
-        //});
-        //$scope.connection.on("UserConnected", function (connectionId, userId) {
-        //    console.log(connectionId, userId)
-        //});
-        //$scope.connection.on("UserDisconnected", function (connectionId) {
-        //    console.log(connectionId, 'offline')
-        //});
+        $scope.connection = new signalR.HubConnectionBuilder().withUrl("/moduleshub").build();
+        $scope.connection.start().then().catch((error) => {
+            showIndicator('connection error','error')
+        });
+        $scope.connection.on("newModuleCreated", function (module) { 
+            var data = $scope._sidebarInit.option('dataSource');
+            data.push(convertKeysToUpper(module));
+            $scope._sidebarInit.option('dataSource', data);
+        });
 
 
-        $scope.elementAttr = {
-            class: 'panel-list dx-theme-accent-as-background-color',
-        };
-        const navigation = [
-            { id: 1, text: 'Modules', icon: 'product', link:'/Sm_Masters/Modules' },
-        ];
+        
+        $scope.resizable = {
+            handles: "bottom right",
+            keepAspectRatio:true
+        }
         $scope._headerToolbar = {
             onInitialized(e) {
                 $scope._headerInit = e.component;
@@ -69,27 +57,36 @@
             revealMode: 'slide',
             opened: true,
             height: 400,
-            closeOnOutsideClick: true,
+            closeOnOutsideClick: false,
             template: 'listTemplate',
             onInitialized(e) {
                 $scope._drawerInstance = e.component;
             },
         };
         $scope._sidebarList = {
-            dataSource: navigation,
+            onInitialized(e) {
+                $scope._sidebarInit = e.component;
+            },
+            dataSource: [],
             hoverStateEnabled: false,
             focusStateEnabled: false,
             activeStateEnabled: false,
             width: 200,
             itemTemplate(data, index, element) {
-                $(element).append("<span>" + data.text + "</span>");
+                $(element).append("<span class='" + data.ICON + "'></span><span><a href='" + data.PATH +"'>" + data.NAME + "</a></span>");
             },
-            onItemClick(e) {
-                location.replace(e.itemData.link)
+            elementAttr: {
+                id: 'sidebar-list',
+                //class: 'panel-list dx-theme-accent-as-background-color',
             },
-            elementAttr: $scope.elementAttr
         };
 
-        
-       
+        $scope.getModules = function () {
+            $http.get("/api/sm_master/modules/").then((res) => {                                
+                $scope._sidebarInit.option('dataSource', res.data);
+            }, function (errorRes) {
+                serverErrorHandler(errorRes.status, 'GET DATA');
+            });
+        };
+        $scope.getModules();
     });

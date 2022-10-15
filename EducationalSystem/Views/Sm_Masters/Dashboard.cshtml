@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="demo-container" ng-controller="sm_dashboardController">
+    <div class="dashboard-element">
+        <div class="row">
+            @{
+                for(int i = 0; i < 6;i++){
+                    <div class="col-lg-2 col-md-2 col-sm-3">
+                        <div class="card" dx-resizable="resizable">
+                            <div class="card-header">
+                                <span>Total @(i + 1) <span class="fa-solid fa-star-of-life"></span></span>
+                            </div>
+                            <div class="card-body">
+                                <span>10</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+              }
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card" dx-resizable="resizable">
+                    <div class="card-header">
+                        <span>Real-Time Transactions</span>
+                    </div>
+                    <div class="card-body">
+                        <div dx-data-grid="realTrans.dataGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+@section scripts{
+    <script src="~/js/sm_scripts/sm_dashboard.js"></script>
+}

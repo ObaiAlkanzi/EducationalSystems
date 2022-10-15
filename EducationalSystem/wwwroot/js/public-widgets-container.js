@@ -569,3 +569,10 @@ const setDeleteDefaultParams = function (model) {
 }
 const gender = [{ id: 1, name: 'male' }, { id: 2, name: 'female' }];
 const phoneTypes = [{ id: 1, name: 'Personal' }, { id: 2, name: 'Home' }, { id: 3, name: 'Static' },];
+const convertKeysToUpper = function (data) {
+    var tmp = {};
+    for (var i in data) {
+        tmp[i.toUpperCase()] = data[i];
+    }
+    return tmp;
+}

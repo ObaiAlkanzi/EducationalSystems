@@ -29,10 +29,11 @@ namespace EducationalSystem.Controllers.Api.Sm
         public IConfiguration Configuration { get; }
 
         [HttpGet, Route("/api/sm_master/modules/")]
-        public ActionResult<DataTable> GetStudents()
+        public ActionResult<DataTable> GetData()
         {
-
-            Dt = new DataTable();
+            List<SM_MODULES> obj = GetModules();
+            var activeModules = from module in obj where module.IS_DELETED == true select module;
+           Dt = new DataTable();
             Conn.Open();
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM SM_MODULES WHERE IS_DELETED = 0", Conn);
             Conn.Close();
@@ -70,6 +71,12 @@ namespace EducationalSystem.Controllers.Api.Sm
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error Add Module");
             }
 
+        }
+
+        private List<SM_MODULES> GetModules()
+        {
+            List<SM_MODULES> obj = new List<SM_MODULES>();
+            return obj;
         }
     }
 }
