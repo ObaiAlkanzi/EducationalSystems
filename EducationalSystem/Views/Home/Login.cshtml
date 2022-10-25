@@ -16,7 +16,15 @@
                 if(Model.ExternalLogins.Count == 0){
                     <h4>No External Logins configured</h4>
                 }else{
-                    <button class="btn btn-primary">Google</button>
+                    <form mrthod="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                        <div>
+                            @foreach(var provider in Model.ExternalLogins){
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Login using @provider.DisplayName">
+                                @provider.DisplayName
+                                </button>
+                            }
+                        </div>
+                    </form>
                 }
             }
         </center>

@@ -29,9 +29,11 @@ namespace EducationalSystem.Controllers
             };
             return View(model);
         }
-        public IActionResult Privacy()
+        public IActionResult ExternalLogin(string provider,string returnUrl)
         {
-            return View();
+            var redirectUrl = Url.Action("ExternalLoginCallback","Account",new { ReturnUrl= returnUrl });
+            var proerties  = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return new ChallengeResult(provider,proerties);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
