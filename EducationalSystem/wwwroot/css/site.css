@@ -15,7 +15,7 @@ html {
 
 body {
   margin-bottom: 60px;
-  overflow:hidden;
+  /*overflow:hidden;*/
 }
 
 header .dx-toolbar{
@@ -34,9 +34,8 @@ header .dx-toolbar-label{
     background:transparent;
 }
 #content{
-    background:#e7e9ed !important;/*#f5f5f5*/
+    background:#e7e9ed !important;
     padding:10px;
-    /*border:1px solid lightgray;*/
 }
 .dx-treelist-container{
     padding: 5px;
@@ -44,9 +43,6 @@ header .dx-toolbar-label{
 #sidebar-list{
      color:#7d7d7d;
      background:#e7e9ed;
-    /*background:white !important;*/
-    /*padding:2px;
-    border-right:1px solid lightgray;*/
 }
 #sidebar-list .dx-item.dx-list-item{    
      color:#7d7d7d;
@@ -62,20 +58,27 @@ header .dx-toolbar-label{
     color:#7d7d7d
 }
 .dashboard-element .card{
-   /* background:#fff;
-    padding:10px;*/
 }
 .dashboard-element .card{
-    /*text-align:center;*/
-    /*border:0px;*/
 }
 .dashboard-element .card .card-header{
-    /*background:transparent;
-    border:0px;*/
 }
 .dashboard-element .card .card-body{
     font-weight:700;
 }
 .dashboard-element .row{
     margin-top:4px;
+}
+.dashboard-element .dx-draggable{
+    background:white;
+}
+.data-row-img{
+    width:30px;
+}
+.online{
+    /*padding:10px;*/
+    background:green;
+}
+.offline{
+
 }

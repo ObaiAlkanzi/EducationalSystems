@@ -10,7 +10,7 @@
                     <div class="col-lg-2 col-md-2 col-sm-3">
                         <div class="card" dx-resizable="resizable">
                             <div class="card-header">
-                                <span>Total @(i + 1) <span class="fa-solid fa-star-of-life"></span></span>
+                                <span>Total @(i + 1) <span class="fa-solid fa-calendar-days"></span></span>
                             </div>
                             <div class="card-body">
                                 <span>10</span>
@@ -29,6 +29,43 @@
                     </div>
                     <div class="card-body">
                         <div dx-data-grid="realTrans.dataGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="card" dx-resizable="resizable">
+                    <div dx-draggable="drag">
+                        <div class="card-header">
+                            <span>Reports</span>
+                        </div>
+                        <div class="card-body">
+                            <div dx-data-grid="realTrans.dataGrid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="card" dx-resizable="resizable">
+                    <div dx-draggable="drag">
+                        <div class="card-header">
+                            <span>Docuemnts</span>
+                        </div>
+                        <div class="card-body">
+                            <div dx-data-grid="realTrans.dataGrid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="card" dx-resizable="resizable">
+                    <div class="card-header">
+                        <span>Active Users</span>
+                    </div>
+                    <div class="card-body">
+                        <div dx-data-grid="users.dataGrid"></div>
                     </div>
                 </div>
             </div>

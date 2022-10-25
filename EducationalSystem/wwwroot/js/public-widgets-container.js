@@ -91,8 +91,6 @@ class basicContainer {
         },
     };
     popup = {
-        //wigth: 100,
-        //height: 400,
         copyRootClassesToWrapper: true,
         closeOnOutsideClick: false,
         deferRendering: false,
@@ -150,7 +148,7 @@ class management {
             },
         ]
     };    
-}
+};
 class submitForm {
     docName = null;
     userId = null;
@@ -265,7 +263,7 @@ class submitForm {
         }
         return tmp;
     }
-}
+};
 class comment {
     popupInit = 1;
     commentBoxInit = 1;
@@ -326,7 +324,7 @@ class comment {
         nextButtonText: "More",
         height: 400,
     };
-}
+};
 class fetchDocument {
     popupInit = 1;
     commentBoxInit = 0;
@@ -491,7 +489,7 @@ class fetchDocument {
             },
         ],
     };
-}
+};
 class report {
     docName = null;
     userId = null;
@@ -511,6 +509,56 @@ class report {
             tail = pointer + 1;
         }
         return filter;
+    }
+};
+class dashContainer {
+    data = [];
+    dataGrid = {
+        height:300,
+        activeStateEnabled: true,
+        focusStateEnabled: true,
+        hoverStateEnabled: true,
+        keyExpr: 'ID',
+        showBorders: true,
+        paging: {
+            pageSize: 10,
+        },
+        pager: {
+            visible: false,
+            allowedPageSizes: [10, 30, 50, 'all'],
+            showPageSizeSelector: true,
+            showInfo: true,
+            showNavigationButtons: true,
+        },
+        filterRow: { visible: false },
+        headerFilter: { visible: false },
+        allowColumnReordering: true,
+        allowColumnResizing: true,
+        searchPanel: {
+            visible: false,
+            width: 240,
+            placeholder: 'Search...',
+        },
+        showColumnLines: true,
+        showRowLines: true,
+        columnMinWidth: 50,
+        columnAutoWidth: true,
+        columnHidingEnabled: true,
+        remoteOperations: true,       
+        editing: {
+            mode: 'row',
+            allowUpdating: false,
+            allowAdding: false,
+            allowDeleting: false,
+            useIcons: true,
+        },
+        columnChooser: {
+            enabled: false,
+            mode: 'select',
+        },
+    };
+    constructor() {
+        
     }
 }
 const filterProcess = function (filter, key, value) {

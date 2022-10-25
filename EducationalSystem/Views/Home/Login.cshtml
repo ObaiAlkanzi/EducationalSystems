@@ -1,0 +1,24 @@
+﻿@model LoginViewModel
+<div class="row">
+    <div class="col-lg-8 col-md-8">
+        <center>
+            <h4>Local Login</h4>
+            <form>
+                <input type="email" name="Email" class="form-control" placeholder="user Gmail" />
+                <input type="password" name="Password" class="form-control" placeholder="user Password" />
+                <input type="submit" name="userPassword" class="bn btn-primary" placeholder="user Password" />
+            </form>
+        </center>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <center>
+            @{
+                if(Model.ExternalLogins.Count == 0){
+                    <h4>No External Logins configured</h4>
+                }else{
+                    <button class="btn btn-primary">Google</button>
+                }
+            }
+        </center>
+    </div>
+</div>

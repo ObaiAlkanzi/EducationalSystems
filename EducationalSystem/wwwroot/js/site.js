@@ -56,30 +56,31 @@
             openedStateMode: 'shrink',
             revealMode: 'slide',
             opened: true,
-            height: 400,
+            height: 'auto',
             closeOnOutsideClick: false,
             template: 'listTemplate',
             onInitialized(e) {
                 $scope._drawerInstance = e.component;
             },
         };
-        $scope._sidebarList = {
-            onInitialized(e) {
-                $scope._sidebarInit = e.component;
-            },
-            dataSource: [],
-            hoverStateEnabled: false,
-            focusStateEnabled: false,
-            activeStateEnabled: false,
-            width: 200,
-            itemTemplate(data, index, element) {
-                $(element).append("<span class='" + data.ICON + "'></span><span><a href='" + data.PATH +"'>" + data.NAME + "</a></span>");
-            },
-            elementAttr: {
-                id: 'sidebar-list',
-                //class: 'panel-list dx-theme-accent-as-background-color',
-            },
-        };
+        //$scope._sidebarList = {
+        //    onInitialized(e) {
+        //        $scope._sidebarInit = e.component;
+        //    },
+        //    dataSource: [],
+        //    hoverStateEnabled: false,
+        //    focusStateEnabled: false,
+        //    activeStateEnabled: false,
+        //    width: 200,
+        //    height: '100%',
+        //    itemTemplate(data, index, element) {
+        //        $(element).append("<span class='" + data.ICON + "'></span><span><a href='" + data.PATH +"'>" + data.NAME + "</a></span>");
+        //    },
+        //    elementAttr: {
+        //        id: 'sidebar-list',
+        //        //class: 'panel-list dx-theme-accent-as-background-color',
+        //    },
+        //};
 
         $scope.getModules = function () {
             $http.get("/api/sm_master/modules/").then((res) => {                                
