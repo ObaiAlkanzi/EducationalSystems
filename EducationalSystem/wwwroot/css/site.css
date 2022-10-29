@@ -82,3 +82,33 @@ header .dx-toolbar-label{
 .offline{
 
 }
+@media only screen and (max-width: 600px) {
+    .login {
+        background: white;
+        border: 1px solid #e5e5e5;
+        margin-top:-40px;
+        padding:10px;
+    }
+}
+@media only screen and ( min-width: 601px) {
+    .login {
+        background: white;
+        border: 1px solid #e5e5e5;
+        padding: 10px;
+    }
+}
+.login .login-btn{
+    margin-top:10px;
+}
+.login .login-logo{
+    margin:10px;
+}
+.login .login-logo img {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+}
+.login .dx-textbox{
+    margin:4px;
+}

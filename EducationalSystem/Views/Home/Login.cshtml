@@ -1,32 +1,57 @@
 ﻿@model LoginViewModel
-<div class="row">
-    <div class="col-lg-8 col-md-8">
-        <center>
-            <h4>Local Login</h4>
-            <form>
-                <input type="email" name="Email" class="form-control" placeholder="user Gmail" />
-                <input type="password" name="Password" class="form-control" placeholder="user Password" />
-                <input type="submit" name="userPassword" class="bn btn-primary" placeholder="user Password" />
-            </form>
-        </center>
-    </div>
-    <div class="col-lg-4 col-md-4">
-        <center>
-            @{
-                if(Model.ExternalLogins.Count == 0){
-                    <h4>No External Logins configured</h4>
-                }else{
-                    <form mrthod="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-                        <div>
-                            @foreach(var provider in Model.ExternalLogins){
-                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Login using @provider.DisplayName">
-                                @provider.DisplayName
-                                </button>
-                            }
-                        </div>
-                    </form>
+@{
+    Layout = "_LoginLayout";    
+}
+<div class="row login">
+    <div class="col-lg-3 col-md-3"></div>
+    <div class="col-lg-6 col-md-6">
+        <div class="col-lg-12 col-md-12">
+            <center>
+                <div class="login-logo">
+                    <img src="~/images/usersProfiles/user-login.png" class="img"/>
+                </div>
+                <form>
+                    <div dx-text-box="login.userEmail"></div>
+                    <div dx-text-box="login.userPassword"></div>
+                    <div dx-button="login.submit"></div>
+                    <br />
+                </form>
+               
+            </center>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div>
+                @{
+                    if (Model.ExternalLogins.Count > 0)
+                    {
+                        <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                            <div>
+
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    string Name = provider.Name;
+                                    string icon = "";
+                                    switch (@provider.DisplayName)
+                                    {
+                                        case "Google":
+                                            icon = "fa-brands fa-google-plus-g";
+                                           
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    <button type="submit" class="btn btn-danger login-btn" name="provider" value="@provider.Name" title="Login using @provider.DisplayName">
+                                        <span class="@icon"></span>
+                                    </button>
+                                }
+                            </div>
+                        </form>
+                    }
+
                 }
-            }
-        </center>
+            </div>
+        </div>
+       
     </div>
+
 </div>
